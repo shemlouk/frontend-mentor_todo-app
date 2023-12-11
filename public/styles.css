@@ -3,3 +3,7 @@
 body {
   font-family: "Josefin Sans", sans-serif;
 }
+
+[un-cloak] {
+  display: none;
+}

@@ -2,8 +2,8 @@ window.__unocss = {
   theme: {
     colors: {
       brightBlue: "hsl(220, 98%, 61%)",
-      checkBackground:
-        "linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%)",
+      brightCyan: "hsl(192, 100%, 67%)",
+      brightMagenta: "hsl(280, 87%, 65%)",
 
       light: {
         veryLightGray: "hsl(0, 0%, 98%)",
