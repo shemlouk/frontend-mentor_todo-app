@@ -1,13 +1,18 @@
 export function FormCheckbox({
   name,
+  taskId,
   checked,
 }: {
   name?: string;
+  taskId?: string;
   checked?: boolean;
 }) {
   return (
     <div class="relative flex">
       <input
+        hx-patch={`/tasks/${taskId}/complete`}
+        hx-target={`#task-${taskId}`}
+        hx-swap="outerHTML"
         type="checkbox"
         {...{ name, checked }}
         class="peer h-6 w-6 cursor-pointer appearance-none rounded-full border border-light-veryLightGrayishBlue checked:border-none checked:bg-gradient-to-br checked:from-brightCyan checked:to-brightMagenta"

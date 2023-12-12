@@ -2,14 +2,15 @@ import { type Task } from "@/lib/definitions";
 import clsx from "clsx";
 import { FormCheckbox } from "../form/checkbox";
 
-export function TodoTask({ content, isCompleted }: Task) {
+export function TodoTask({ id, content, isCompleted }: Task) {
   return (
     <li
+      id={`task-${id}`}
       data-checked={String(isCompleted)}
       class="border-b border-light-lightGrayishBlue px-6 py-4"
     >
       <div class="flex gap-4">
-        <FormCheckbox checked={isCompleted} />
+        <FormCheckbox taskId={id} checked={isCompleted} />
 
         <span
           class={clsx("flex-1 font-medium", {
