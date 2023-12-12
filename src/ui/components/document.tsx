@@ -14,6 +14,7 @@ export function Document({ children }: { children: Html.Children }) {
         <script src="/public/unocss-config.js" />
         <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime" />
         <script src="https://unpkg.com/htmx.org@1.9.9" />
+        <script src="https://unpkg.com/hyperscript.org@0.9.12" />
       </head>
       {children}
     </html>

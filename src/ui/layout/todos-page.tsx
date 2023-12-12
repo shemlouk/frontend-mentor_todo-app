@@ -1,13 +1,5 @@
 import { Document } from "../components/document";
 import { TodoCreateForm } from "../components/todo/create-form";
-import { TodoList } from "../components/todo/list";
-
-const mockList = [
-  { id: "1", content: "Jog around the park 3x", isCompleted: false },
-  { id: "2", content: "10 minutes meditation", isCompleted: false },
-  { id: "3", content: "Readt for 1 hour", isCompleted: true },
-  { id: "4", content: "Pick up groceries", isCompleted: false },
-];
 
 export function TodosPage() {
   return (
@@ -24,9 +16,13 @@ export function TodosPage() {
           <img src="/public/icon-moon.svg" alt="moon icon" class="h-6 w-6" />
         </header>
 
-        <main class="flex flex-col gap-4">
+        <main
+          hx-get="/tasks"
+          hx-trigger="load"
+          hx-swap="beforeend"
+          class="flex flex-col gap-4"
+        >
           <TodoCreateForm />
-          <TodoList tasks={mockList} />
         </main>
       </body>
     </Document>

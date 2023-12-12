@@ -1,6 +1,6 @@
 export function FormCheckbox({
-  name = "",
-  checked = false,
+  name,
+  checked,
 }: {
   name?: string;
   checked?: boolean;
@@ -10,7 +10,7 @@ export function FormCheckbox({
       <input
         type="checkbox"
         {...{ name, checked }}
-        class="checked:to-brightMagenta checked:from-brightCyan peer h-6 w-6 cursor-pointer appearance-none rounded-full border border-light-veryLightGrayishBlue checked:border-none checked:bg-gradient-to-br"
+        class="peer h-6 w-6 cursor-pointer appearance-none rounded-full border border-light-veryLightGrayishBlue checked:border-none checked:bg-gradient-to-br checked:from-brightCyan checked:to-brightMagenta"
       />
 
       <span class="text-white pointer-events-none absolute left-2/4 top-2/4 -translate-x-2/4 -translate-y-2/4 opacity-0 transition-opacity peer-checked:opacity-100">

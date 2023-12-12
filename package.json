@@ -8,7 +8,8 @@
     "@elysiajs/html": "^0.7.3",
     "@elysiajs/static": "^0.7.1",
     "clsx": "^2.0.0",
-    "elysia": "latest"
+    "elysia": "latest",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "bun-types": "latest",
