@@ -1,0 +1,1 @@
+preload = ["./plugins/script-to-text.ts"]

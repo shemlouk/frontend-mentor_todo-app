@@ -1,8 +1,6 @@
 import { Task } from "@/lib/definitions";
-import {
-  confirmClearCompletedTasks,
-  updateUncheckedTasksCount,
-} from "@/lib/scripts";
+import { text as confirmClearCompletedTasks } from "@/lib/scripts/confirm-clear-completed-tasks.script.js";
+import { text as updateUncheckedTasksCount } from "@/lib/scripts/update-unchecked-tasks-count.script.js";
 import { TodoTask } from "./task";
 
 export function TodoList({ tasks }: { tasks: Task[] }) {

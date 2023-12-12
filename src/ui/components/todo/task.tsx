@@ -1,5 +1,5 @@
 import { type Task } from "@/lib/definitions";
-import { confirmDeleteTask } from "@/lib/scripts";
+import { text as confirmDeleteTask } from "@/lib/scripts/confirm-delete-task.script.js";
 import clsx from "clsx";
 import { FormCheckbox } from "../form/checkbox";
 
