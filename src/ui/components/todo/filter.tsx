@@ -4,7 +4,7 @@ export function TodoFilter() {
       id="todo-filter"
       _="on submit halt"
       data-selected="all"
-      class="bg-white group z-10 flex items-center justify-center gap-6 rounded-md py-3 font-bold text-light-darkGrayishBlue shadow-[0_35px_60px_-15px_rgba(0,0,0,0.08)]"
+      class="bg-white group z-10 flex items-center justify-center gap-6 rounded-md py-3 font-bold text-light-darkGrayishBlue shadow-[0_35px_60px_-15px_rgba(0,0,0,0.08)] transition-colors dark:bg-dark-veryDarkDesaturatedBlue"
     >
       <button
         id="all"

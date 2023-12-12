@@ -9,11 +9,11 @@ export function TodoList({ tasks }: { tasks: Task[] }) {
   return (
     <div
       id="todo-list-container"
-      class="bg-white relative flex h-full flex-col overflow-hidden rounded-md shadow-[0_35px_60px_-15px_rgba(0,0,0,0.1)]"
+      class="bg-white relative flex h-full flex-col overflow-hidden rounded-md shadow-[0_35px_60px_-15px_rgba(0,0,0,0.1)] transition-colors dark:bg-dark-veryDarkDesaturatedBlue"
     >
       <ul
         id="todo-list"
-        class="h-full overflow-y-scroll pb-16"
+        class="no-scrollbars h-full overflow-y-scroll pb-16"
         _={`on mutation of childList js ${updateUncheckedTasksCount} end`}
       >
         {tasks.map((task) => (
@@ -21,7 +21,7 @@ export function TodoList({ tasks }: { tasks: Task[] }) {
         ))}
       </ul>
 
-      <div class="bg-white absolute bottom-0 left-0 flex w-full justify-between border-t border-light-lightGrayishBlue px-6 py-4 text-sm text-light-darkGrayishBlue">
+      <div class="bg-white absolute bottom-0 left-0 flex w-full justify-between border-t border-light-lightGrayishBlue px-6 py-4 text-sm text-light-darkGrayishBlue transition-colors dark:border-dark-veryDarkGrayishBlue dark:bg-dark-veryDarkDesaturatedBlue">
         <span>
           <span id="unchecked-count">{uncheckedCount}</span> items left
         </span>
@@ -32,7 +32,7 @@ export function TodoList({ tasks }: { tasks: Task[] }) {
           hx-trigger="confirmed"
           hx-swap="outerHTML"
           _={`on click call ${confirmClearCompletedTasks} if result.isConfirmed trigger confirmed`}
-          class="transition-colors hover:text-light-veryDarkGrayishBlue"
+          class="transition-colors hover:text-light-veryDarkGrayishBlue dark:hover:text-dark-lightGrayishBlueHover"
         >
           Clear completed
         </button>

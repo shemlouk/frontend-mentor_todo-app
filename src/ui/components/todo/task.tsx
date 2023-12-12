@@ -10,14 +10,15 @@ export function TodoTask({ id, content, isCompleted }: Task) {
     <li
       id={componentId}
       data-checked={String(isCompleted)}
-      class="border-b border-light-veryLightGrayishBlue px-6 py-4"
+      class="border-b border-light-veryLightGrayishBlue px-6 py-4 dark:border-dark-ultraDarkGrayishBlue"
     >
       <div class="flex gap-4">
         <FormCheckbox taskId={id} checked={isCompleted} />
 
         <span
           class={clsx("flex-1 font-medium", {
-            "text-light-lightGrayishBlue line-through": isCompleted,
+            "text-light-lightGrayishBlue line-through dark:text-dark-veryDarkGrayishBlue":
+              isCompleted,
           })}
         >
           {content}

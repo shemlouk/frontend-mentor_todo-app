@@ -7,7 +7,7 @@ export function TodoCreateForm() {
       hx-swap="afterbegin"
       hx-target="#todo-list"
       _="on submit target.reset()"
-      class="bg-white flex items-center gap-4 rounded-md px-6 py-3"
+      class="bg-white flex items-center gap-4 rounded-md px-6 py-3 transition-colors dark:bg-dark-veryDarkDesaturatedBlue"
     >
       <FormCheckbox name="isCompleted" />
 
@@ -15,7 +15,7 @@ export function TodoCreateForm() {
         required
         type="text"
         name="content"
-        class="mt-1 flex-1 outline-none"
+        class="bg-transparent mt-1 flex-1 outline-none"
         placeholder="Create a new todo..."
       />
     </form>
