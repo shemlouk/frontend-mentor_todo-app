@@ -3,9 +3,11 @@ import clsx from "clsx";
 import { FormCheckbox } from "../form/checkbox";
 
 export function TodoTask({ id, content, isCompleted }: Task) {
+  const componentId = `task-${id}`;
+
   return (
     <li
-      id={`task-${id}`}
+      id={componentId}
       data-checked={String(isCompleted)}
       class="border-b border-light-lightGrayishBlue px-6 py-4"
     >
@@ -20,7 +22,11 @@ export function TodoTask({ id, content, isCompleted }: Task) {
           {content}
         </span>
 
-        <button>
+        <button
+          hx-delete={`/tasks/${id}`}
+          hx-target={`#${componentId}`}
+          hx-swap="outerHTML"
+        >
           <img src="/public/icon-cross.svg" alt="delete icon" class="h-4 w-4" />
         </button>
       </div>

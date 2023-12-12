@@ -39,6 +39,17 @@ const tasksRoute = new Elysia({ prefix: "/tasks" })
     task.isCompleted = !task.isCompleted;
 
     return <TodoTask {...task} />;
+  })
+  .delete("/:taskId", ({ params: { taskId }, set }) => {
+    const taskIndex = inMemoryDb.findIndex((task) => task.id === taskId);
+
+    if (taskIndex < 0) {
+      set.status = 404;
+      return { message: "Task not found." };
+    }
+
+    inMemoryDb.splice(taskIndex, 1);
+    return "";
   });
 
 export { tasksRoute };
