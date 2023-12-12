@@ -5,7 +5,7 @@ import { randomUUID } from "crypto";
 import Elysia from "elysia";
 import { z } from "zod";
 
-const inMemoryDb = [
+let inMemoryDb = [
   { id: randomUUID(), content: "Jog around the park 3x", isCompleted: false },
   { id: randomUUID(), content: "10 minutes meditation", isCompleted: false },
   { id: randomUUID(), content: "Readt for 1 hour", isCompleted: true },
@@ -50,6 +50,12 @@ const tasksRoute = new Elysia({ prefix: "/tasks" })
 
     inMemoryDb.splice(taskIndex, 1);
     return "";
+  })
+  .delete("/completed", () => {
+    const uncheckedTasks = inMemoryDb.filter((task) => !task.isCompleted);
+    inMemoryDb = [...uncheckedTasks];
+
+    return <TodoList tasks={inMemoryDb} />;
   });
 
 export { tasksRoute };

@@ -9,7 +9,10 @@ export function TodoList({ tasks }: { tasks: Task[] }) {
   );
 
   return (
-    <div class="bg-white flex flex-col overflow-hidden rounded-md shadow-[0_35px_60px_-15px_rgba(0,0,0,0.2)]">
+    <div
+      id="todo-list-container"
+      class="bg-white flex flex-col overflow-hidden rounded-md shadow-[0_35px_60px_-15px_rgba(0,0,0,0.2)]"
+    >
       <ul
         id="todo-list"
         _={`on mutation of childList js ${updateUncheckedTasksCount} end`}
@@ -24,7 +27,12 @@ export function TodoList({ tasks }: { tasks: Task[] }) {
           <span id="unchecked-count">{itemsLeftQuantity}</span> items left
         </span>
 
-        <button class="transition-colors hover:text-light-veryDarkGrayishBlue">
+        <button
+          hx-delete="/tasks/completed"
+          hx-target="#todo-list-container"
+          hx-swap="outerHTML"
+          class="transition-colors hover:text-light-veryDarkGrayishBlue"
+        >
           Clear completed
         </button>
       </div>
