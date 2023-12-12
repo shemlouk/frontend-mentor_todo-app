@@ -1,6 +1,5 @@
 import { TodoList } from "@/ui/components/todo/list";
 import { TodoTask } from "@/ui/components/todo/task";
-import { html } from "@elysiajs/html";
 import { randomUUID } from "crypto";
 import Elysia from "elysia";
 import { z } from "zod";
@@ -12,16 +11,31 @@ let inMemoryDb = [
   { id: randomUUID(), content: "Pick up groceries", isCompleted: false },
 ];
 
-const createTaskSchema = z.object({
+const createTaskBodySchema = z.object({
   content: z.string().min(1),
   isCompleted: z.string().optional(),
 });
 
+const selectQuerySchema = z.object({
+  select: z.enum(["active", "completed"]),
+});
+
 const tasksRoute = new Elysia({ prefix: "/tasks" })
-  .use(html())
-  .get("/", () => <TodoList tasks={inMemoryDb} />)
+  .get("/", ({ query }) => {
+    try {
+      const { select } = selectQuerySchema.parse(query);
+
+      const filteredTasks = inMemoryDb.filter((task) =>
+        select === "completed" ? task.isCompleted : !task.isCompleted,
+      );
+
+      return <TodoList tasks={filteredTasks.toReversed()} />;
+    } catch (error) {
+      return <TodoList tasks={inMemoryDb.toReversed()} />;
+    }
+  })
   .post("/", ({ body }) => {
-    const { content, isCompleted } = createTaskSchema.parse(body);
+    const { content, isCompleted } = createTaskBodySchema.parse(body);
 
     const task = { id: randomUUID(), content, isCompleted: !!isCompleted };
     inMemoryDb.push(task);

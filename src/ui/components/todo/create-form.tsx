@@ -4,7 +4,7 @@ export function TodoCreateForm() {
   return (
     <form
       hx-post="/tasks"
-      hx-swap="beforeend"
+      hx-swap="afterbegin"
       hx-target="#todo-list"
       _="on submit target.reset()"
       class="bg-white flex items-center gap-4 rounded-md px-6 py-3"

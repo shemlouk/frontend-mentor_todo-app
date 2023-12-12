@@ -1,5 +1,6 @@
 import { Document } from "../components/document";
 import { TodoCreateForm } from "../components/todo/create-form";
+import { TodoFilter } from "../components/todo/filter";
 
 export function TodosPage() {
   return (
@@ -12,17 +13,20 @@ export function TodosPage() {
         />
 
         <header class="mb-6 flex items-center justify-between">
-          <h1 class="text-white text-3xl font-bold">T O D O</h1>
+          <h1 class="text-white select-none text-3xl font-bold">T O D O</h1>
           <img src="/public/icon-moon.svg" alt="moon icon" class="h-6 w-6" />
         </header>
 
         <main
-          hx-get="/tasks"
+          hx-target="#todo-list-placeholder"
+          hx-swap="outerHTML"
           hx-trigger="load"
-          hx-swap="beforeend"
-          class="flex flex-col gap-4"
+          hx-get="/tasks"
+          class="flex h-[90%] flex-col gap-4"
         >
           <TodoCreateForm />
+          <div id="todo-list-placeholder" />
+          <TodoFilter />
         </main>
       </body>
     </Document>

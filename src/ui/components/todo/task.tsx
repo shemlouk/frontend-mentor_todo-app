@@ -10,7 +10,7 @@ export function TodoTask({ id, content, isCompleted }: Task) {
     <li
       id={componentId}
       data-checked={String(isCompleted)}
-      class="border-b border-light-lightGrayishBlue px-6 py-4"
+      class="border-b border-light-veryLightGrayishBlue px-6 py-4"
     >
       <div class="flex gap-4">
         <FormCheckbox taskId={id} checked={isCompleted} />
@@ -24,9 +24,9 @@ export function TodoTask({ id, content, isCompleted }: Task) {
         </span>
 
         <button
+          hx-target={`#${componentId}`}
           hx-delete={`/tasks/${id}`}
           hx-trigger="confirmed"
-          hx-target={`#${componentId}`}
           hx-swap="outerHTML"
           _={`on click call ${confirmDeleteTask} if result.isConfirmed trigger confirmed`}
         >
