@@ -5,7 +5,11 @@ import { TodoFilter } from "../components/todo/filter";
 export function TodosPage() {
   return (
     <Document>
-      <body class="flex h-screen w-full flex-col bg-light-veryLightGray px-6 py-12 text-light-veryDarkGrayishBlue">
+      <body
+        un-cloak
+        hx-boost="true"
+        class="flex h-screen w-full flex-col bg-light-veryLightGray px-6 py-12 text-light-veryDarkGrayishBlue"
+      >
         <img
           src="/public/bg-mobile-light.jpg"
           alt="background"
