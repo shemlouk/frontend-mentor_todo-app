@@ -10,7 +10,7 @@ export function FormCheckbox({
   return (
     <div class="relative flex">
       <input
-        hx-patch={`/tasks/${taskId}/complete`}
+        hx-patch={taskId && `/tasks/${taskId}/complete`}
         hx-target={`#task-${taskId}`}
         hx-swap="outerHTML"
         type="checkbox"
