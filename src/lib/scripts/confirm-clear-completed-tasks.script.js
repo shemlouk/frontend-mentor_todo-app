@@ -3,5 +3,6 @@ Swal.fire({
   text: 'Do you want to clear all completed tasks?',
   showCancelButton: true,
   confirmButtonText: 'Yes!',
-  cancelButtonText: 'No.'
+  cancelButtonText: 'No.',
+  heightAuto: false
 })
