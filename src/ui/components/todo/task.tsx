@@ -1,4 +1,5 @@
 import { type Task } from "@/lib/definitions";
+import { confirmDeleteTask } from "@/lib/scripts";
 import clsx from "clsx";
 import { FormCheckbox } from "../form/checkbox";
 
@@ -24,8 +25,10 @@ export function TodoTask({ id, content, isCompleted }: Task) {
 
         <button
           hx-delete={`/tasks/${id}`}
+          hx-trigger="confirmed"
           hx-target={`#${componentId}`}
           hx-swap="outerHTML"
+          _={`on click call ${confirmDeleteTask} if result.isConfirmed trigger confirmed`}
         >
           <img src="/public/icon-cross.svg" alt="delete icon" class="h-4 w-4" />
         </button>

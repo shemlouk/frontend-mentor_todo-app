@@ -15,6 +15,7 @@ export function Document({ children }: { children: Html.Children }) {
         <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime" />
         <script src="https://unpkg.com/htmx.org@1.9.9" />
         <script src="https://unpkg.com/hyperscript.org@0.9.12" />
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" />
       </head>
       {children}
     </html>

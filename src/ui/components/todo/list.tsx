@@ -1,5 +1,8 @@
 import { Task } from "@/lib/definitions";
-import { updateUncheckedTasksCount } from "@/lib/scripts";
+import {
+  confirmClearCompletedTasks,
+  updateUncheckedTasksCount,
+} from "@/lib/scripts";
 import { TodoTask } from "./task";
 
 export function TodoList({ tasks }: { tasks: Task[] }) {
@@ -29,8 +32,10 @@ export function TodoList({ tasks }: { tasks: Task[] }) {
 
         <button
           hx-delete="/tasks/completed"
+          hx-trigger="confirmed"
           hx-target="#todo-list-container"
           hx-swap="outerHTML"
+          _={`on click call ${confirmClearCompletedTasks} if result.isConfirmed trigger confirmed`}
           class="transition-colors hover:text-light-veryDarkGrayishBlue"
         >
           Clear completed
