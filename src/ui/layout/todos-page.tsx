@@ -8,7 +8,7 @@ export function TodosPage() {
       <body
         un-cloak
         hx-boost="true"
-        class="group flex h-screen w-full flex-col justify-between gap-6 bg-light-veryLightGray px-6 py-12 text-light-veryDarkGrayishBlue transition-colors dark:bg-dark-veryDarkBlue dark:text-dark-lightGrayishBlue md:items-center md:gap-10"
+        class="group flex h-screen w-full flex-col gap-6 bg-light-veryLightGray px-6 py-12 text-light-veryDarkGrayishBlue transition-colors dark:bg-dark-veryDarkBlue dark:text-dark-lightGrayishBlue md:items-center md:gap-10"
       >
         <figure class="fixed left-0 top-0 -z-10 w-full">
           <img
@@ -59,7 +59,7 @@ export function TodosPage() {
           hx-swap="outerHTML"
           hx-trigger="load"
           hx-get="/tasks"
-          class="flex h-full max-h-[85%] flex-col gap-4 md:w-full md:max-w-screen-sm md:gap-6"
+          class="flex max-h-[80%] flex-col gap-4 md:w-full md:max-w-screen-sm md:gap-6"
         >
           <TodoCreateForm />
 
