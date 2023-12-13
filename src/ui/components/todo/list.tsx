@@ -16,7 +16,7 @@ export function TodoList({
   return (
     <div
       id="todo-list-container"
-      class="bg-white relative flex h-full flex-col overflow-hidden rounded-md shadow-[0_35px_60px_-15px_rgba(0,0,0,0.1)] transition-colors dark:bg-dark-veryDarkDesaturatedBlue"
+      class="bg-white relative flex flex-col overflow-hidden rounded-md shadow-[0_35px_60px_-15px_rgba(0,0,0,0.1)] transition-colors dark:bg-dark-veryDarkDesaturatedBlue"
     >
       <ul
         id="todo-list"

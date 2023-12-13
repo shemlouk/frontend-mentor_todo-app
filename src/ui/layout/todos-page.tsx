@@ -8,7 +8,7 @@ export function TodosPage() {
       <body
         un-cloak
         hx-boost="true"
-        class="group flex h-screen w-full flex-col bg-light-veryLightGray px-6 py-12 text-light-veryDarkGrayishBlue transition-colors dark:bg-dark-veryDarkBlue dark:text-dark-lightGrayishBlue md:items-center"
+        class="group flex h-screen w-full flex-col justify-between gap-6 bg-light-veryLightGray px-6 py-12 text-light-veryDarkGrayishBlue transition-colors dark:bg-dark-veryDarkBlue dark:text-dark-lightGrayishBlue md:items-center md:gap-10"
       >
         <figure class="fixed left-0 top-0 -z-10 w-full">
           <img
@@ -33,7 +33,7 @@ export function TodosPage() {
           />
         </figure>
 
-        <header class="mb-6 flex items-center justify-between md:mb-10 md:w-full md:max-w-screen-sm">
+        <header class="flex items-center justify-between md:w-full md:max-w-screen-sm">
           <h1 class="text-white select-none text-3xl font-bold md:text-4xl">
             T O D O
           </h1>
@@ -59,7 +59,7 @@ export function TodosPage() {
           hx-swap="outerHTML"
           hx-trigger="load"
           hx-get="/tasks"
-          class="flex max-h-[90%] flex-col gap-4 md:w-full md:max-w-screen-sm md:gap-6"
+          class="flex h-full max-h-[85%] flex-col gap-4 md:w-full md:max-w-screen-sm md:gap-6"
         >
           <TodoCreateForm />
 
@@ -69,6 +69,10 @@ export function TodosPage() {
             <TodoFilter />
           </div>
         </main>
+
+        <span class="text-center font-semibold text-light-darkGrayishBlue dark:text-dark-veryDarkGrayishBlue">
+          Drag and drop to reorder list
+        </span>
       </body>
     </Document>
   );
