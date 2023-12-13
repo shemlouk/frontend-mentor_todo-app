@@ -1,6 +1,6 @@
 export function Document({ children }: { children: Html.Children }) {
   return (
-    <html lang="en" data-mode="light">
+    <html lang="en">
       <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />

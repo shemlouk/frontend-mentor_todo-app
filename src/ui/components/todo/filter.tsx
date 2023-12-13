@@ -1,18 +1,22 @@
-export function TodoFilter() {
+import { randomUUID } from "crypto";
+
+export function TodoFilter({ selected = "all" }: { selected?: string }) {
+  const componentId = "todo-filter-" + randomUUID();
+
   return (
     <form
-      id="todo-filter"
+      id={componentId}
       _="on submit halt"
-      data-selected="all"
-      class="bg-white group z-10 flex items-center justify-center gap-6 rounded-md py-3 font-bold text-light-darkGrayishBlue shadow-[0_35px_60px_-15px_rgba(0,0,0,0.08)] transition-colors dark:bg-dark-veryDarkDesaturatedBlue"
+      data-selected={selected}
+      class="group flex items-center gap-6 font-bold text-light-darkGrayishBlue transition-colors"
     >
       <button
         id="all"
         hx-get="/tasks"
         hx-swap="outerHTML"
         hx-target="#todo-list-container"
-        _="on click set #todo-filter @data-selected to my @id"
-        class="mt-1 transition-colors group-data-[selected=all]:text-brightBlue"
+        _={`on click set #${componentId} @data-selected to my @id`}
+        class="transition-colors group-data-[selected=all]:text-brightBlue md:hover:text-light-veryDarkGrayishBlue dark:md:hover:text-dark-lightGrayishBlueHover"
       >
         All
       </button>
@@ -22,8 +26,8 @@ export function TodoFilter() {
         hx-swap="outerHTML"
         hx-get="/tasks?select=active"
         hx-target="#todo-list-container"
-        _="on click set #todo-filter @data-selected to my @id"
-        class="mt-1 transition-colors group-data-[selected=active]:text-brightBlue"
+        _={`on click set #${componentId} @data-selected to my @id`}
+        class="transition-colors group-data-[selected=active]:text-brightBlue md:hover:text-light-veryDarkGrayishBlue dark:md:hover:text-dark-lightGrayishBlueHover"
       >
         Active
       </button>
@@ -33,8 +37,8 @@ export function TodoFilter() {
         hx-swap="outerHTML"
         hx-get="/tasks?select=completed"
         hx-target="#todo-list-container"
-        _="on click set #todo-filter @data-selected to my @id"
-        class="mt-1 transition-colors group-data-[selected=completed]:text-brightBlue"
+        _={`on click set #${componentId} @data-selected to my @id`}
+        class="transition-colors group-data-[selected=completed]:text-brightBlue md:hover:text-light-veryDarkGrayishBlue dark:md:hover:text-dark-lightGrayishBlueHover"
       >
         Completed
       </button>

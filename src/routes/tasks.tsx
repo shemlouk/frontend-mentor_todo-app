@@ -29,7 +29,7 @@ const tasksRoute = new Elysia({ prefix: "/tasks" })
         select === "completed" ? task.isCompleted : !task.isCompleted,
       );
 
-      return <TodoList tasks={filteredTasks.toReversed()} />;
+      return <TodoList tasks={filteredTasks.toReversed()} selected={select} />;
     } catch (error) {
       return <TodoList tasks={inMemoryDb.toReversed()} />;
     }

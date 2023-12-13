@@ -8,36 +8,48 @@ export function TodosPage() {
       <body
         un-cloak
         hx-boost="true"
-        class="group flex h-screen w-full flex-col bg-light-veryLightGray px-6 py-12 text-light-veryDarkGrayishBlue transition-colors dark:bg-dark-veryDarkBlue dark:text-dark-lightGrayishBlue"
+        class="group flex h-screen w-full flex-col bg-light-veryLightGray px-6 py-12 text-light-veryDarkGrayishBlue transition-colors dark:bg-dark-veryDarkBlue dark:text-dark-lightGrayishBlue md:items-center"
       >
         <figure class="fixed left-0 top-0 -z-10 w-full">
           <img
             src="/public/bg-mobile-light.jpg"
             alt="background"
-            class="w-full group-data-[dark]:hidden"
+            class="w-full group-data-[dark]:hidden md:hidden"
           />
           <img
             src="/public/bg-mobile-dark.jpg"
             alt="background"
-            class="hidden w-full group-data-[dark]:block"
+            class="hidden w-full group-data-[dark]:block md:hidden md:group-data-[dark]:hidden"
+          />
+          <img
+            src="/public/bg-desktop-light.jpg"
+            alt="background"
+            class="hidden w-full group-data-[dark]:hidden md:block"
+          />
+          <img
+            src="/public/bg-desktop-dark.jpg"
+            alt="background"
+            class="hidden w-full md:group-data-[dark]:block"
           />
         </figure>
 
-        <header class="mb-6 flex items-center justify-between">
-          <h1 class="text-white select-none text-3xl font-bold">T O D O</h1>
+        <header class="mb-6 flex items-center justify-between md:mb-10 md:w-full md:max-w-screen-sm">
+          <h1 class="text-white select-none text-3xl font-bold md:text-4xl">
+            T O D O
+          </h1>
 
           <button _="on click toggle @data-dark on the closest parent <body/>">
             <img
               _="on click add .dark to the closest parent <html/>"
               src="/public/icon-moon.svg"
               alt="moon icon"
-              class="h-6 w-6 group-data-[dark]:hidden"
+              class="h-6 w-6 transition-all hover:scale-110 group-data-[dark]:hidden md:h-7 md:w-7"
             />
             <img
               _="on click remove .dark from the closest parent <html/>"
               src="/public/icon-sun.svg"
               alt="sun icon"
-              class="hidden h-6 w-6 group-data-[dark]:block"
+              class="hidden h-6 w-6 transition-all hover:scale-110 group-data-[dark]:block md:h-7 md:w-7"
             />
           </button>
         </header>
@@ -47,11 +59,15 @@ export function TodosPage() {
           hx-swap="outerHTML"
           hx-trigger="load"
           hx-get="/tasks"
-          class="flex h-[90%] flex-col gap-4"
+          class="flex max-h-[90%] flex-col gap-4 md:w-full md:max-w-screen-sm md:gap-6"
         >
           <TodoCreateForm />
+
           <div id="todo-list-placeholder" />
-          <TodoFilter />
+
+          <div class="bg-white z-10 flex items-center justify-center rounded-md py-3 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.08)] transition-colors dark:bg-dark-veryDarkDesaturatedBlue md:hidden">
+            <TodoFilter />
+          </div>
         </main>
       </body>
     </Document>
