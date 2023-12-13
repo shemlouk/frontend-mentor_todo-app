@@ -10,28 +10,17 @@ export function TodoTask({ id, content, isCompleted }: Task) {
     <li
       id={componentId}
       data-checked={String(isCompleted)}
-      class="group/item border-b border-light-veryLightGrayishBlue dark:border-dark-ultraDarkGrayishBlue"
-      _="on dragover or dragenter halt the event
-         on drop set :id to #todo-list @data-drag
-          then put my innerHTML into #{:id}
-          then set #{:id} @id to my @id
-          then set my @id to :id
-          then get event.dataTransfer.getData('text/html')
-          then put it into me
-          then remove .opacity-30 from the first <div/> in me"
+      class="group/item border-b border-light-veryLightGrayishBlue dark:border-dark-ultraDarkGrayishBlue dark:bg-dark-veryDarkDesaturatedBlue"
     >
+      <input name={id} type="text" class="hidden" />
+
       <div
-        draggable="true"
         class="flex gap-4 px-6 py-4  md:px-8 md:py-5"
-        _={`on dragstart set #todo-list @data-drag to '${componentId}'
-              then add .opacity-30 to me
-              then call event.dataTransfer.setData('text/html', target.outerHTML)
-              then js event.dataTransfer.effectAllowed = 'move' end`}
+        _="on dragstart call event.dataTransfer.setDragImage('', 0, 0)"
       >
         <FormCheckbox taskId={id} checked={isCompleted} />
 
         <span
-          draggable="false"
           class={clsx("mt-1 flex-1 font-medium md:text-lg", {
             "text-light-lightGrayishBlue line-through dark:text-dark-veryDarkGrayishBlue":
               isCompleted,

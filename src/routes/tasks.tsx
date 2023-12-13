@@ -1,15 +1,11 @@
-import { TodoList } from "@/ui/components/todo/list";
-import { TodoTask } from "@/ui/components/todo/task";
-import { randomUUID } from "crypto";
 import Elysia from "elysia";
 import { z } from "zod";
 
-let inMemoryDb = [
-  { id: randomUUID(), content: "Jog around the park 3x", isCompleted: false },
-  { id: randomUUID(), content: "10 minutes meditation", isCompleted: false },
-  { id: randomUUID(), content: "Readt for 1 hour", isCompleted: true },
-  { id: randomUUID(), content: "Pick up groceries", isCompleted: false },
-];
+import { TasksRepository } from "@/repositories/tasks";
+import { TodoList } from "@/ui/components/todo/list";
+import { TodoTask } from "@/ui/components/todo/task";
+
+const tasksRepository = new TasksRepository();
 
 const createTaskBodySchema = z.object({
   content: z.string().min(1),
@@ -25,51 +21,75 @@ const tasksRoute = new Elysia({ prefix: "/tasks" })
     try {
       const { select } = selectQuerySchema.parse(query);
 
-      const filteredTasks = inMemoryDb.filter((task) =>
-        select === "completed" ? task.isCompleted : !task.isCompleted,
-      );
+      const tasks =
+        select === "active"
+          ? tasksRepository.getActiveTasks()
+          : tasksRepository.getCompletedTasks();
 
-      return <TodoList tasks={filteredTasks.toReversed()} selected={select} />;
+      return <TodoList tasks={tasks} selected={select} />;
     } catch (error) {
-      return <TodoList tasks={inMemoryDb.toReversed()} />;
+      const tasks = tasksRepository.getAllTasks();
+      return <TodoList tasks={tasks} />;
     }
   })
   .post("/", ({ body }) => {
     const { content, isCompleted } = createTaskBodySchema.parse(body);
 
-    const task = { id: randomUUID(), content, isCompleted: !!isCompleted };
-    inMemoryDb.push(task);
+    const { task } = tasksRepository.addTask({
+      content,
+      isCompleted: !!isCompleted,
+    });
 
     return <TodoTask {...task} />;
   })
   .patch("/:taskId/complete", ({ params: { taskId }, set }) => {
-    const task = inMemoryDb.find((task) => task.id === taskId);
+    const task = tasksRepository.getTask(taskId);
 
-    if (!task) {
-      set.status = 404;
-      return { message: "Task not found." };
+    if (task) {
+      task.isCompleted = !task.isCompleted;
+      tasksRepository.updateTask(task);
+
+      return <TodoTask {...task} />;
     }
 
-    task.isCompleted = !task.isCompleted;
-
-    return <TodoTask {...task} />;
+    set.status = 404;
+    return { message: "Task not found." };
   })
-  .delete("/:taskId", ({ params: { taskId }, set }) => {
-    const taskIndex = inMemoryDb.findIndex((task) => task.id === taskId);
-
-    if (taskIndex < 0) {
-      set.status = 404;
-      return { message: "Task not found." };
-    }
-
-    inMemoryDb.splice(taskIndex, 1);
-    return "";
+  .delete("/:taskId", ({ params: { taskId } }) => {
+    tasksRepository.deleteTask(taskId);
   })
   .delete("/completed", () => {
-    const uncheckedTasks = inMemoryDb.filter((task) => !task.isCompleted);
-    inMemoryDb = [...uncheckedTasks];
+    const completedTasks = tasksRepository.getCompletedTasks();
 
-    return <TodoList tasks={inMemoryDb} />;
+    completedTasks.forEach((task) => {
+      tasksRepository.deleteTask(task.id);
+    });
+
+    const tasks = tasksRepository.getAllTasks();
+    return <TodoList tasks={tasks} />;
+  })
+  .post("/sort", ({ body, query }) => {
+    const list = [];
+
+    for (const key in body as {}) {
+      list.push(key);
+    }
+
+    try {
+      const { select } = selectQuerySchema.parse(query);
+      tasksRepository.reorderTasks(list, select);
+
+      const tasks =
+        select === "active"
+          ? tasksRepository.getActiveTasks()
+          : tasksRepository.getCompletedTasks();
+
+      return <TodoList tasks={tasks} selected={select} />;
+    } catch (error) {
+      tasksRepository.reorderTasks(list);
+      const tasks = tasksRepository.getAllTasks();
+      return <TodoList tasks={tasks} />;
+    }
   });
 
 export { tasksRoute };

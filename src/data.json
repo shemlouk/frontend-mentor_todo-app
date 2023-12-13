@@ -1,0 +1,24 @@
+{
+  "tasks": [
+    {
+      "id": "b520b98b-0a1b-4711-9fb8-c05bc71a52e8",
+      "content": "Jog around the park 3x",
+      "isCompleted": false
+    },
+    {
+      "id": "e54c3bc2-8b2d-497b-a73f-2623a50eae04",
+      "content": "10 minutes meditation",
+      "isCompleted": false
+    },
+    {
+      "id": "89c3d340-5ab2-4123-a9ac-206a424673ee",
+      "content": "Read for 1 hour",
+      "isCompleted": true
+    },
+    {
+      "id": "3e708ae3-117a-4648-aaf6-41e1ec3a6f3b",
+      "content": "Pick up groceries",
+      "isCompleted": false
+    }
+  ]
+}
