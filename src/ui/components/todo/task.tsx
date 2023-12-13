@@ -10,7 +10,7 @@ export function TodoTask({ id, content, isCompleted }: Task) {
     <li
       id={componentId}
       data-checked={String(isCompleted)}
-      class="group/item border-b border-light-veryLightGrayishBlue dark:border-dark-ultraDarkGrayishBlue dark:bg-dark-veryDarkDesaturatedBlue"
+      class="group/item border-b border-light-veryLightGrayishBlue transition-colors dark:border-dark-ultraDarkGrayishBlue dark:bg-dark-veryDarkDesaturatedBlue"
     >
       <input name={id} type="text" class="hidden" />
 
