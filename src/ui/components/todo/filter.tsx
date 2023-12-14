@@ -16,7 +16,8 @@ export function TodoFilter({ selected = "all" }: { selected?: string }) {
         hx-swap="outerHTML"
         hx-target="#todo-list-container"
         _={`on click set #${componentId} @data-selected to my @id`}
-        class="transition-colors group-data-[selected=all]:text-brightBlue md:hover:text-light-veryDarkGrayishBlue dark:md:hover:text-dark-lightGrayishBlueHover"
+        class="transition-colors disabled:cursor-not-allowed group-data-[selected=all]:text-brightBlue md:hover:text-light-veryDarkGrayishBlue dark:md:hover:text-dark-lightGrayishBlueHover"
+        data-loading-disable
       >
         All
       </button>
@@ -27,7 +28,8 @@ export function TodoFilter({ selected = "all" }: { selected?: string }) {
         hx-get="/tasks?select=active"
         hx-target="#todo-list-container"
         _={`on click set #${componentId} @data-selected to my @id`}
-        class="transition-colors group-data-[selected=active]:text-brightBlue md:hover:text-light-veryDarkGrayishBlue dark:md:hover:text-dark-lightGrayishBlueHover"
+        class="transition-colors disabled:cursor-not-allowed group-data-[selected=active]:text-brightBlue md:hover:text-light-veryDarkGrayishBlue dark:md:hover:text-dark-lightGrayishBlueHover"
+        data-loading-disable
       >
         Active
       </button>
@@ -38,7 +40,8 @@ export function TodoFilter({ selected = "all" }: { selected?: string }) {
         hx-get="/tasks?select=completed"
         hx-target="#todo-list-container"
         _={`on click set #${componentId} @data-selected to my @id`}
-        class="transition-colors group-data-[selected=completed]:text-brightBlue md:hover:text-light-veryDarkGrayishBlue dark:md:hover:text-dark-lightGrayishBlueHover"
+        class="transition-colors disabled:cursor-not-allowed group-data-[selected=completed]:text-brightBlue md:hover:text-light-veryDarkGrayishBlue dark:md:hover:text-dark-lightGrayishBlueHover"
+        data-loading-disable
       >
         Completed
       </button>
