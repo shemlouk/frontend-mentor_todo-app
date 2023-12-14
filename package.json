@@ -1,6 +1,7 @@
 {
-  "name": "app",
+  "name": "todo-app",
   "version": "1.0.50",
+  "type": "module",
   "scripts": {
     "dev": "bun run --watch src/server.ts"
   },
@@ -16,5 +17,5 @@
     "prettier": "^3.1.1",
     "prettier-plugin-tailwindcss": "^0.5.9"
   },
-  "module": "src/index.js"
+  "module": "src/server.ts"
 }
