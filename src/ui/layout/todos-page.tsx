@@ -9,6 +9,10 @@ export function TodosPage() {
         un-cloak
         hx-boost="true"
         class="group flex h-screen w-full flex-col gap-6 bg-light-veryLightGray px-6 py-12 text-light-veryDarkGrayishBlue transition-colors dark:bg-dark-veryDarkBlue dark:text-dark-lightGrayishBlue md:items-center md:gap-10"
+        _="on htmx:afterOnLoad call localStorage.getItem('theme')
+            then if result is 'dark'
+              then set @data-dark to 'true'
+              then add .dark to the closest parent <html/>"
       >
         <figure class="fixed left-0 top-0 -z-10 w-full">
           <img
@@ -40,16 +44,18 @@ export function TodosPage() {
 
           <button _="on click toggle @data-dark on the closest parent <body/>">
             <img
-              _="on click add .dark to the closest parent <html/>"
               src="/public/icon-moon.svg"
               alt="moon icon"
               class="h-6 w-6 transition-all hover:scale-110 group-data-[dark]:hidden md:h-7 md:w-7"
+              _="on click add .dark to the closest parent <html/>
+                  then call localStorage.setItem('theme', 'dark')"
             />
             <img
-              _="on click remove .dark from the closest parent <html/>"
               src="/public/icon-sun.svg"
               alt="sun icon"
               class="hidden h-6 w-6 transition-all hover:scale-110 group-data-[dark]:block md:h-7 md:w-7"
+              _="on click remove .dark from the closest parent <html/>
+                  then call localStorage.setItem('theme', 'light')"
             />
           </button>
         </header>
